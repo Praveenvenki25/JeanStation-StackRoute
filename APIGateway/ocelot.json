@@ -1,0 +1,730 @@
+
+{
+    "Routes": [
+        //User Controller Routes
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/User",
+            "DownstreamScheme": "https",
+            "ServiceName": "UserAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/User",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "UserRole": "Admin"
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/User/validate/{token}",
+            "DownstreamScheme": "https",
+            "ServiceName": "UserAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/User/validate/{token}",
+            "UpstreamHttpMethod": [ "Post" ]
+            
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/User/login",
+            "DownstreamScheme": "https",
+            "ServiceName": "UserAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/User/login",
+            "UpstreamHttpMethod": [ "Post" ]
+
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/User/Register",
+            "DownstreamScheme": "https",
+            "ServiceName": "UserAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/User/register",
+            "UpstreamHttpMethod": [ "Post" ]
+
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/User/getUserbyId/{userId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "UserAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/User/getUserbyId/{userId}",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/User/{UserId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "UserAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/User/{UserId}",
+            "UpstreamHttpMethod": [ "Put" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/User/{userId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "UserAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/User/{userId}",
+            "UpstreamHttpMethod": [ "Delete" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "UserRole": "Admin"
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/User/getUserByEmail/{Email}",
+            "DownstreamScheme": "https",
+            "ServiceName": "UserAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/User/getUserByEmail/{Email}",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+
+        {
+            //address controller routes
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Address/user/{userId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "UserAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Address/user/{userId}",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            //address controller routes
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Address/{addressId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "UserAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Address/{addressId}",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Address",
+            "DownstreamScheme": "https",
+            "ServiceName": "UserAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Address",
+            "UpstreamHttpMethod": [ "Post" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Address/{addressId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "UserAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Address/{addressId}",
+            "UpstreamHttpMethod": [ "Put" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Address/{addressId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "UserAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Address/{addressId}",
+            "UpstreamHttpMethod": [ "Delete" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            //product controller
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Product",
+            "DownstreamScheme": "https",
+            "ServiceName": "productAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Product",
+            "UpstreamHttpMethod": [ "Post" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "UserRole": "Admin"
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Product/{productId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "productAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Product/{productId}",
+            "UpstreamHttpMethod": [ "Delete" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "UserRole": "Admin"
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Product/{productId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "productAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Product/{productId}",
+            "UpstreamHttpMethod": [ "Put" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "UserRole": "Admin"
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Product/{productId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "productAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Product/{productId}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Product",
+            "DownstreamScheme": "https",
+            "ServiceName": "productAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Product",
+            "UpstreamHttpMethod": [ "Get" ]
+
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Product/count/{itemCount}",
+            "DownstreamScheme": "https",
+            "ServiceName": "productAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Product/count/{itemCount}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Product/name/{productName}",
+            "DownstreamScheme": "https",
+            "ServiceName": "productAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Product/name/{productName}",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Product/category/{category}",
+            "DownstreamScheme": "https",
+            "ServiceName": "productAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Product/category/{category}",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+
+
+
+
+        {
+            //product-Image Controller
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/ProductImages/{productId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "productAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/ProductImages/{productId}",
+            "UpstreamHttpMethod": [ "Get" ]
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/ProductImages/{productId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "productAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/ProductImages/{productId}",
+            "UpstreamHttpMethod": [ "Delete" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "UserRole": "Admin"
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/ProductImages",
+            "DownstreamScheme": "https",
+            "ServiceName": "productAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/ProductImages",
+            "UpstreamHttpMethod": [ "Post" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "UserRole": "Admin"
+            }
+        },
+        {
+            //wishlist Controller
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Wishlist/{userId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "WishListAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Wishlist/{userId}",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Wishlist",
+            "DownstreamScheme": "https",
+            "ServiceName": "WishListAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Wishlist",
+            "UpstreamHttpMethod": [ "Post" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Wishlist/{wishListId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "WishListAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Wishlist/{wishListId}",
+            "UpstreamHttpMethod": [ "Delete" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            //order Controller
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Order",
+            "DownstreamScheme": "https",
+            "ServiceName": "OrdersAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Order",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "UserRole": "Admin"
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Order/{userId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "OrdersAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Order/{userId}",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Order",
+            "DownstreamScheme": "https",
+            "ServiceName": "OrdersAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Order",
+            "UpstreamHttpMethod": [ "Post" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Order",
+            "DownstreamScheme": "https",
+            "ServiceName": "OrdersAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Order",
+            "UpstreamHttpMethod": [ "Put" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "UserRole": "Admin"
+            }
+        },
+        {
+            //order status controller
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/OrderStatus",
+            "DownstreamScheme": "https",
+            "ServiceName": "OrdersAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/OrderStatus",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "UserRole": "Admin"
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/OrderStatus",
+            "DownstreamScheme": "https",
+            "ServiceName": "OrdersAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/OrderStatus",
+            "UpstreamHttpMethod": [ "Post" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+
+        },
+        {
+            //Cart Controller
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Cart/{userId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "CartAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Cart/{userId}",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Cart",
+            "DownstreamScheme": "https",
+            "ServiceName": "CartAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Cart",
+            "UpstreamHttpMethod": [ "Post" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Cart",
+            "DownstreamScheme": "https",
+            "ServiceName": "CartAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Cart",
+            "UpstreamHttpMethod": [ "Put" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Cart/{cartId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "CartAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Cart/{cartId}",
+            "UpstreamHttpMethod": [ "Delete" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Discounts",
+            "DownstreamScheme": "https",
+            "ServiceName": "DiscountsAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Discounts",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Discounts/{couponCode}",
+            "DownstreamScheme": "https",
+            "ServiceName": "DiscountsAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Discounts/{couponCode}",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Discounts",
+            "DownstreamScheme": "https",
+            "ServiceName": "DiscountsAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Discounts",
+            "UpstreamHttpMethod": [ "Post" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "UserRole": "Admin"
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Discounts/{couponCode}",
+            "DownstreamScheme": "https",
+            "ServiceName": "DiscountsAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Discounts/{couponCode}",
+            "UpstreamHttpMethod": [ "Put" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+
+
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Discounts/{discountId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "DiscountsAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Discounts/{discountId}",
+            "UpstreamHttpMethod": [ "Delete" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            },
+            "RouteClaimsRequirement": {
+                "UserRole": "Admin"
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Notifications",
+            "DownstreamScheme": "https",
+            "ServiceName": "NotificationsAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Notifications",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Notifications/{notificationId}",
+            "DownstreamScheme": "https",
+            "ServiceName": "NotificationsAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Notifications/{notificationId}",
+            "UpstreamHttpMethod": [ "Get" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Notifications/UserOrder",
+            "DownstreamScheme": "https",
+            "ServiceName": "NotificationsAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Notifications/UserOrder",
+            "UpstreamHttpMethod": [ "Post" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        },
+        {
+            "UseServiceDiscovery": true,
+            "DownstreamPathTemplate": "/api/Notifications/User",
+            "DownstreamScheme": "https",
+            "ServiceName": "NotificationsAPI",
+            "LoadBalancerOptions": {
+                "Type": "LeastConnection"
+            },
+            "UpstreamPathTemplate": "/api/Notifications/User",
+            "UpstreamHttpMethod": [ "Post" ],
+            "AuthenticationOptions": {
+                "AuthenticationProviderKey": "token",
+                "AllowedScopes": []
+            }
+        }
+
+
+    ]
+
+
+}
+
+

@@ -1,0 +1,23 @@
+table {
+    width: 100%;
+  }
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.title{
+  font-size: 18pt;
+  font-weight: bolder;
+  margin-top: 22px;
+}

@@ -1,0 +1,12 @@
+.about-section {
+    padding: 100px;
+    text-align: center;
+    color: white;
+    font-weight: bolder;
+    font-size: 12pt;
+    background : url("https://i.pinimg.com/originals/6b/3d/19/6b3d19519ce6e80ee0ed5ad6c67b3225.jpg");
+  }
+
+  .space{
+    padding-bottom: 5%;
+  }

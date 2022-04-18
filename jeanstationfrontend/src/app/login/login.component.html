@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row border rounded bg-light my-4">
+      <div class="col-md-12 my-4 title text-center">
+        Login
+      </div>
+    </div>
+    <div class="row py-4">
+        <form (ngSubmit)="onSubmit()">
+        <div class="col-md-5 offset-md-4 p-4 margin-bottom border rounded">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>UserName</mat-label>
+                <input matInput placeholder="email"  [formControl]="username"/>
+              </mat-form-field>
+              <div class="text-danger" *ngIf="username.dirty && username.invalid">
+                  Email is required
+              </div>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput [formControl]="password"/>
+              </mat-form-field>
+              <div class="text-danger" *ngIf="password.dirty && password.invalid">
+                password is required
+            </div>
+            <div style="margin-left: 70px; margin-bottom: 20px;">
+              <re-captcha (resolved)="resolved($event)" siteKey="6LcEGVofAAAAAJR4nvrXrjZHVsrrCvShBgGu6kIh"></re-captcha>
+            </div>
+              <!--[disabled]="isButtonDisabled"-->
+              <button class="btn btn-secondary" [disabled]="isButtonDisabled">Login</button>  
+              <h4 class="pt-3">Not registered with us? | <a href="/register">Register here!</a> </h4>
+        </div>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+
+</div>
+<!-- [disabled]="isButtonDisabled" -->

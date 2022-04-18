@@ -1,0 +1,78 @@
+<div class="wrapper bg-white">
+    <div class="row border rounded bg-light my-4">
+        <div class="col-md-12 my-4 title text-center">
+          My Orders
+        </div>
+      </div>
+
+    <div class="row row border rounded p-1 my-3 margin-bottom" style="margin-bottom: 20px;" *ngFor="let o of orderproducts">
+
+        <div class="col">
+            <div class="card card-2" style="border: none; background-color: rgb(228, 228, 228);">
+                <div class="card-body">
+                    <div class="media">
+                        <div class="media-body my-auto text-right">
+                            <div class="row my-auto justify-content-between flex-md-row py-4 pt-2 " id="hbold">
+
+                                <div class="col-3 my-auto">
+                                    Order Id: {{o.orderId}}
+                                </div>
+                                <div class="col-3 my-auto">
+                                    Order Date: {{o.orderDatetime | date: 'MM/dd/yyyy'}}
+                                </div>
+                                <div class="col-3 py-2" id="design">
+                                    {{o.orderStatus}}
+                                </div>
+
+
+                            </div>
+
+                            <div class="row my-auto flex-column flex-md-row text-uppercase text-muted" id="bold">
+
+                                <div class="col my-auto"> Product Name</div>
+                                <div class="col my-auto"> Product Quantity</div>
+                                <div class="col my-auto"> Total</div>
+                                <div class="col my-auto"> Product Image</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-2 " *ngFor="let p of o.products">
+
+            <div class="col">
+                <div class="card card-2" style="border: none;">
+                    <div class="card-body">
+                        <div class="media">
+                            <div class="media-body my-auto text-right">
+                                <div class="row my-auto flex-column flex-md-row" id="dfont">
+
+                                    <div class="col my-auto">
+                                        <h4 class="mb-0">{{p.product?.productName}}
+                                        </h4>
+                                    </div>
+                                    <div class="col my-auto">
+                                        <h4 class="mb-0">{{p.productQuantity}}</h4>
+                                    </div>
+                                    <div class="col my-auto">
+                                        <h4 class="mb-0">${{p.productAmount}}</h4>
+                                    </div>
+
+                                    <div class="col">
+                                        <ng-template ngFor let-i [ngForOf]="p.prodImage" let-k="index">
+                                            <img *ngIf="k<1" [src]="i.productImageUrl" class="mb-0" />
+                                        </ng-template>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-1">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

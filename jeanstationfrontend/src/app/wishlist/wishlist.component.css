@@ -1,0 +1,35 @@
+.example-card {
+    max-width: 400px;
+  }
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+.favourite{
+  margin-left: 20px;
+}
+.product{
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 12pt;
+  font-style: bold;
+}
+.card{
+  height: 100%; 
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+#hov{
+    
+  transition: transform .3s; /* Animation */
+  margin: 0 auto;
+}
+
+#hov:hover {
+  transform: scale(1.04); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.margin-bottom {
+  margin-bottom: 62.5%;
+}

@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row py-4">
+        <form (ngSubmit)="UpdateUser()">
+        <div class="col-md-5 offset-md-4">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>FirstName</mat-label>
+                <input matInput placeholder={{this.user.firstName}} [formControl]="firstname"/>
+              </mat-form-field>
+              <div class="text-danger" *ngIf="firstname.dirty && firstname.invalid">
+                  Firstname is required
+              </div>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>LastName</mat-label>
+                <input type="lastname" matInput placeholder={{this.user.lastName}}  [formControl]="lastname"/>
+              </mat-form-field>
+              <div class="text-danger" *ngIf="lastname.dirty && lastname.invalid">
+                lastname is required
+            </div>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Contact Number</mat-label>
+                <input type="contact" matInput placeholder={{this.user.contactNumber}} [formControl]="contact"/>
+              </mat-form-field>
+              <div class="text-danger" *ngIf="contact.dirty && contact.invalid">
+                contact is required
+            </div>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Email Address</mat-label>
+                <input type="email" matInput placeholder={{this.user.emailAddress}} [formControl]="email"/>
+              </mat-form-field>
+              <div class="text-danger" *ngIf="email.dirty && email.invalid">
+                Email is required
+            </div>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input type="lastname" matInput placeholder={{this.user.password}} [formControl]="password"/>
+              </mat-form-field>
+              <div class="text-danger" *ngIf="password.dirty && password.invalid">
+                Password is required
+            </div>
+              <button mat-raised-button color="primary">Update</button>
+            
+        </div>
+        </form>
+    </div>
+    <button mat-raised-button color="primary" (click)="getUser()">check</button>
+</div>
+

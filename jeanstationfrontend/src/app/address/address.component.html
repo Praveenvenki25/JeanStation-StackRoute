@@ -1,0 +1,179 @@
+<div class="container">
+  <div class="row border rounded bg-light my-4">
+    <div class="col-md-12 my-4 title text-center">
+      Manage Address
+     </div>
+  </div>
+    <div class="row my-4">
+      <div class="col-md-10">
+
+      </div>
+      <div class="col-md-2 text-right mt-3">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-secondary flex-end" data-bs-toggle="modal" data-bs-target="#addAddressModal">
+            Add an Address
+          </button>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="addAddressModal" tabindex="-1" aria-labelledby="addAddressModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title mt-2" id="addAddressModalLabel">Add Address Details</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form class="example-form" [formGroup]="addressForm">
+                
+                <!-- Street Name -->
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Street Name</mat-label>
+                  <input matInput formControlName="streetName">
+                </mat-form-field>
+                
+                <!-- Apartment Number -->
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Apartment & Building Number</mat-label>
+                  <input matInput formControlName="apartmentNumber">
+                </mat-form-field>
+
+                <!-- City -->
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>City</mat-label>
+                  <input matInput formControlName="city">
+                </mat-form-field>
+
+                <!-- Province -->
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Province</mat-label>
+                  <input matInput formControlName="province">
+                </mat-form-field>
+
+                <!-- Postal Code -->
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>Postal Code</mat-label>
+                  <input matInput formControlName="postalcode">
+                </mat-form-field>
+              </form>  
+            </div>
+            <div class="modal-footer">
+              <button #addAddressCloseButton type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-dark" (click)="addAddress()">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table mat-table [dataSource]="addresses" class="mat-elevation-z8">
+
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+              
+                <!-- Apartment tNumber Column -->
+                <ng-container matColumnDef="apartmentNumber">
+                  <th mat-header-cell *matHeaderCellDef> Apartment & Building Number </th>
+                  <td mat-cell *matCellDef="let element"> {{element.apartmentNumber}} </td>
+                </ng-container>
+
+                 <!-- Street Name Column -->
+                 <ng-container matColumnDef="streetName">
+                    <th mat-header-cell *matHeaderCellDef> Street Name </th>
+                    <td mat-cell *matCellDef="let element"> {{element.streetName}} </td>
+                  </ng-container>
+              
+                <!-- City Column -->
+                <ng-container matColumnDef="city">
+                  <th mat-header-cell *matHeaderCellDef> City </th>
+                  <td mat-cell *matCellDef="let element"> {{element.city}} </td>
+                </ng-container>
+              
+                <!-- Province Column -->
+                <ng-container matColumnDef="province">
+                  <th mat-header-cell *matHeaderCellDef> Province </th>
+                  <td mat-cell *matCellDef="let element"> {{element.province}} </td>
+                </ng-container>
+
+                <!-- Postal Code Column -->
+                <ng-container matColumnDef="postalcode">
+                  <th mat-header-cell *matHeaderCellDef> Postal Code </th>
+                  <td mat-cell *matCellDef="let element"> {{element.postalcode}} </td>
+                </ng-container>
+                
+                <!-- Edit Icon -->
+                  <ng-container matColumnDef="editAddressIcon">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let element">
+                      <i class="fa-solid fa-pen pointer mx-2 text-secondary" data-bs-toggle="modal" data-bs-target="#editAddressModal"  (click)="editAddress(element.addressId)"></i>
+                    </td>
+                  </ng-container> 
+
+                <!-- Delete Icon -->
+                <ng-container matColumnDef="deleteAddressIcon">
+                  <th mat-header-cell *matHeaderCellDef>  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <i class="fa-solid fa-trash pointer mx-2 text-secondary" (click)="deleteAddress(element.addressId)"></i>  
+                  </td>
+                </ng-container>               
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>  
+              <!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+              showFirstLastButtons 
+              aria-label="Select page of products">
+              </mat-paginator> -->
+        </div>
+    </div>
+</div>
+
+<!-- Edit Address Modal -->
+<div class="modal fade" id="editAddressModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title mt-2" id="exampleModalLabel">Edit Address Details</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="form-group">
+          <!-- Street Name-->
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Street Name</mat-label>
+            <input matInput [(ngModel)]="editedAddress.streetName" name="streetName" >
+          </mat-form-field>
+          
+         <!-- Apartment Number --> 
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Apartment & Building Number</mat-label>
+            <input matInput [(ngModel)]="editedAddress.apartmentNumber" name="apartmentNumber" >
+          </mat-form-field>
+
+          <!-- City --> 
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>City</mat-label>
+            <input matInput [(ngModel)]="editedAddress.city" name="city" >
+          </mat-form-field>
+
+          <!-- Province --> 
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Province</mat-label>
+            <input matInput [(ngModel)]="editedAddress.province" name="province" >
+          </mat-form-field>
+
+          <!-- Postal Code --> 
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Postal Code</mat-label>
+            <input matInput [(ngModel)]="editedAddress.postalcode" name="postalcode" >
+          </mat-form-field>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button #editAddressCloseButton type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark" (click)="updateAddress()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+.example-month-picker .mat-calendar-period-button {
+    pointer-events: none;
+  }
+  
+  .example-month-picker .mat-calendar-arrow {
+    display: none;
+  }
+
+  .title{
+    font-size: 20pt;
+    font-weight: bolder;
+  }
+
+  .margin-bottom {
+    margin-bottom: 70px;
+  }
+  

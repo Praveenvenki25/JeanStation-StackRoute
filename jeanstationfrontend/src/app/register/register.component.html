@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row border rounded bg-light my-4">
+      <div class="col-md-12 my-4 title text-center">
+        Register
+      </div>
+    </div>
+    <div class="row">
+        <form (ngSubmit)="RegisterUser()">
+        <div class="col-md-5 mt-2 offset-md-4 py-4 p-4 border rounded">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>First Name</mat-label>
+                <input matInput [formControl]="firstname"/>
+              </mat-form-field>
+              <div class="text-danger" *ngIf="firstname.dirty && firstname.invalid">
+                  First name is required
+              </div>
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Last Name</mat-label>
+                <input type="lastname" matInput [formControl]="lastname"/>
+              </mat-form-field>
+              <div class="text-danger" *ngIf="lastname.dirty && lastname.invalid">
+                Last name is required
+            </div>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Contact Number</mat-label>
+                <input type="number" matInput [formControl]="contact"/>
+              </mat-form-field>
+              <div class="text-danger" *ngIf="contact.dirty && contact.invalid">
+                Contact is required
+            </div>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Email Address</mat-label>
+                <input type="email" matInput [formControl]="email"/>
+              </mat-form-field>
+              <div class="text-danger" *ngIf="email.dirty && email.invalid">
+                Email is required
+            </div>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput [formControl]="password"/>
+              </mat-form-field>
+              <div class="text-danger" *ngIf="password.dirty && password.invalid">
+                Password is required
+            </div>
+
+            <!-- Confirm Password -->
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>Confirm Password</mat-label>
+              <input type="password" matInput [formControl]="confirmpassword"/>
+            </mat-form-field>
+            <div class="text-danger" *ngIf="confirmpassword.dirty && confirmpassword.value != password.value">
+              Confirm Password should match the Password
+            </div>
+            <button class="btn btn-secondary">Register</button>
+            <h4 class="pt-3">Already a customer? | <a href="/login">Login here!</a></h4>
+        </div>
+      </form>
+    </div>
+    <div class="row"><br/></div>
+    <div class="row"><br/></div>
+    <div class="row"><br/></div>
+    <div class="row"><br/></div>
+</div>

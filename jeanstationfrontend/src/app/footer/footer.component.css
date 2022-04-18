@@ -1,0 +1,15 @@
+footer {
+    border-top: solid 1px;
+    background: rgba(236, 236, 236, 0.5);
+    width: 100%;
+    position:fixed;
+    bottom: 0px;
+    left: 0;
+  }
+
+  #bold {
+    font-size: 0.8rem;
+    font-weight: bolder;
+    padding-left: 0px;
+    padding-right: 0px
+}

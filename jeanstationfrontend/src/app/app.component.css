@@ -1,0 +1,10 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+.favourite{
+  margin-left: 20px;
+}
+#spacing{
+  padding-bottom: 200px;
+  background-color: rgb(255, 255, 255);
+}

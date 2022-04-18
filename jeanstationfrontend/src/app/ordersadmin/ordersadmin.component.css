@@ -1,0 +1,121 @@
+body {
+    min-height: 100vh;
+    background-size: cover;
+    font-family: 'Lato', sans-serif;
+    color: rgba(116, 116, 116, 0.667);
+    background: linear-gradient(140deg, #fff, 50%, #a6a6a6)
+}
+
+#bold {
+    font-size: 12pt;
+    font-weight: bolder;
+    padding-bottom: 5px;   
+}
+
+#hovmain{
+    
+    transition: transform 8s ease-in; 
+    margin: 0 auto;
+}
+  
+#hovmain:hover {
+    box-shadow: 0px 0px 4px 4px #888888; 
+  }
+
+#hov{
+    
+    transition: transform .3s; 
+    margin: 0 auto;
+}
+  
+#hov:hover {
+    transform: scale(1.02); 
+  }
+
+p {
+    font-size: 14px;
+    margin-bottom: 7px
+}
+
+.container{
+    padding-bottom: 5%;
+  }
+
+.small {
+    letter-spacing: 0.5px !important
+}
+
+.card-1 {
+    box-shadow: 2px 2px 10px 0px rgb(93, 93, 93)
+}
+
+hr {
+    background-color: rgba(248, 248, 248, 0.667)
+}
+
+.bold {
+    font-weight: 500
+}
+
+.change-color {
+    color: #a6a6a6 !important
+}
+
+.card-2 {
+    box-shadow: 1px 1px 3px 0px rgb(112, 115, 139)
+}
+
+.fa-circle.active {
+    font-size: 8px;
+    color: #7f7f7f
+}
+
+.fa-circle {
+    font-size: 8px;
+    color: #aaa
+}
+
+.progress {
+    height: 5px !important;
+    margin-bottom: 0
+}
+
+.invoice {
+    position: relative;
+    top: -70px
+}
+
+.Glasses {
+    position: relative;
+    top: -12px !important
+}
+
+.card-footer {
+    background-color: #6e6e6e;
+    color: #fff
+}
+
+h2 {
+    color: rgb(74, 74, 74);
+    letter-spacing: 2px !important
+}
+
+.display-3 {
+    font-weight: 500 !important
+}
+
+
+
+.card-footer small {
+    letter-spacing: 7px !important;
+    font-size: 12px
+}
+
+.border-line {
+    border-right: 1px solid rgb(71, 71, 71)
+}
+
+.title{
+    font-size: 20pt;
+    font-weight: bolder;
+}

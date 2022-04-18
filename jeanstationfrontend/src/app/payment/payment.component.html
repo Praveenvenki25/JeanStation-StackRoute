@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row border rounded bg-light my-4">
+    <div class="col-md-12 my-4 title text-center">
+      Payment
+    </div>
+  </div>
+    <div class="row col-md-4 offset-md-4 mt-4 text-center">
+        <!-- <span><h1>Powered by</h1> <h1>J<span class="font-italic" style="color: rgb(124, 124, 124);">SPay</span></h1></span> -->
+        <h1 style="font-size: small;font-weight:700">Powered by J<span class="font-italic" style="color: rgb(124, 124, 124);">SPay</span></h1>
+    </div>
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-4 margin-bottom">
+            <form [formGroup]="paymentForm">
+                <!-- Card Number  -->
+                <div class="form-group mb-4">
+                  <label for="cardnumber">Card Number</label>
+                  <input type="number" formControlName="cardNumber" #cardNumber class="form-control" id="cardnumber" aria-describedby="emailHelp" placeholder="Enter card number" required>
+                  <!-- <label class="text-danger" *ngIf="cardNumber.value.length != 16">Card number should be 16-digit long</label> -->
+                  <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                  <div class="text-danger" *ngIf="paymentForm.value.cardNumber.toString().length != 16 && onSubmit">
+                    Card Number should exactly have 16 digits
+                  </div>
+                </div>
+
+                <!-- Card Holder's Name  -->
+                <div class="form-group mt-4">
+                  <label for="chname">Card Holder's Name</label>
+                  <input type="text" formControlName="cardHolderName" class="form-control" id="chname" placeholder="Enter card holder's name" required>
+                  <div class="text-danger" *ngIf="paymentForm.value.cardHolderName == '' && onSubmit">
+                    Card Holder's Name is required
+                  </div>
+                </div>
+
+                <!-- CCV  -->
+                <div class="form-group mt-4">
+                    <label for="cvv">CVV</label>
+                    <input type="password" formControlName="cvv" minlength="3" class="form-control" id="cvv" placeholder="Enter 3-digit cvv" required>
+                    <div class="text-danger" *ngIf="paymentForm.value.cvv.toString().length != 3 && onSubmit">
+                      CVV Number should exactly have 3 digits
+                    </div>
+                </div>
+
+                <!-- Expiry Date  -->
+                <div class="form-group mt-4">
+                    <label for="expirydate">Expiry Date</label>
+                    <input type="month" formControlName="expiryDate" class="form-control" id="expirydate" min="2022-04" value="2022-04" placeholder="2022-04" required>
+                    <div class="text-danger" *ngIf="paymentForm.value.expiryDate == '' && onSubmit">
+                      Expiry Date is required
+                    </div>
+                </div>
+
+                <!-- <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                  <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div> -->
+                <a type="submit" class="btn btn-secondary mt-4" (click)="updateAndRouteToOrderConfirmation()">Submit</a>
+              </form>
+        </div>
+    </div>
+</div>

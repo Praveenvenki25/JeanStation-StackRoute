@@ -1,0 +1,60 @@
+body {
+    background-color: #000
+}
+
+.card {
+    border: none
+}
+
+.product {
+    background-color: #eee
+}
+
+.brand {
+    font-size: 13px
+}
+
+.act-price {
+    font-weight: 700
+}
+
+.about {
+    font-size: 14px
+}
+
+.color {
+    margin-bottom: 10px
+}
+
+.cart i {
+    margin-right: 10px
+}
+
+#btnCart
+{
+  margin-right: 10px;
+}
+
+#main-image {
+    transition: transform .2s; /* Animation */
+    margin: 0 auto;
+  }
+  
+#main-image:hover {
+    transform: scale(1.50); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+
+  #productDetails
+  {
+      padding-top: 50px;
+  }
+
+  #backButton
+  {
+      text-decoration: none;
+      color: rgb(84, 80, 80);
+  }
+
+  .container{
+    padding-bottom: 5%;
+  }

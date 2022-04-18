@@ -1,0 +1,7 @@
+export default class Payment {
+    cardNumber: number;
+    cvvNumber: number;
+    cardHolderName: string;
+    expiryDate: Date;
+    password: string;
+}

@@ -1,0 +1,137 @@
+ <div class="container px-4 px-lg-5">
+            <!-- Heading Row-->
+            <div class="row gx-4 gx-lg-5 align-items-center my-5">
+                <div class="col-lg-7">
+                    <!-- <img class="img-fluid rounded mb-4 mb-lg-0" src="https://dummyimage.com/900x400/dee2e6/6c757d.jpg" alt="..." /> -->
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner" style="height:250px;">
+                          <div class="carousel-item active">
+                            <img src="/assets/images/Denim-2.JPG" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="/assets/images/Luxury-3.JPG" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="/assets/images/Kids-1.JPG" class="d-block w-100" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="/assets/images/Women-1.JPG" class="d-block w-100" alt="...">
+                          </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
+                </div>
+                <div class="col-lg-5">
+                    <h1 class="font-weight-light">JEANSTATION</h1>
+                    <p style="text-align: justify;">Founded with love and a penchant for quality, JeanStation has now grown to become a much loved and trusted name for Mens clothing, Women essentials and children's fashion.
+                        We have good collection of baby dresses, Men and Women denim clothing.With a carefully curated collection of designs in peppy colours and chic combinations that are elegantly stylish, our line of clothing has something for everyone's liking/ parents looking for practical, well-designed outfits for their children</p>
+                    <a class="btn btn-secondary" routerLink="/products/{{categoryOptions[0]}}">Shop Now</a>
+                </div>
+            </div>
+            
+            <!-- Content Row-->
+            <div class="row gx-4 gx-lg-5">
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="card-title" style="text-align: center;">KIDS COLLECTION</h2>
+                            <img src="/assets/images/Kids2.JPG" class="d-block w-100" alt="..." style="height:350px;margin-bottom: 15px;">
+                            <p class="card-text" style="text-align: justify;">From fancy formalwear to luxury loungewear, explore our collection of various Kid designer clothes, denims and accessories.Keep it cool and casual with our high quality Kids jeans and hoodies, or choose smart and stylish shirts and knitwear from JeanStation Kidswear.</p>
+                        </div>
+                        <div class="card-footer"><a class="btn btn-secondary btn-sm" routerLink="/products/{{categoryOptions[1]}}">Shop Now</a></div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="card-title" style="text-align: center;">MENS COLLECTION</h2>
+                            <img src="/assets/images/Mens.JPG" class="d-block w-100" alt="..." style="height:350px;margin-bottom: 15px;">
+                            <p class="card-text" style="text-align: justify;">Stay cool and look smart with our wide selection of stylish outfits - be it checked shirts and distressed jeans, or safari shorts and T-shirts, we have a pair for every season. Shop from leading brands like Van Heusen, Allen Solly, Levi's, Wrangler, Jack and Jones, Lee, Pepe, Arrow, and more.</p>
+                        </div>
+                        <div class="card-footer"><a class="btn btn-secondary btn-sm" routerLink="/products/{{categoryOptions[2]}}">Shop Now</a></div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-5">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h2 class="card-title" style="text-align: center;">WOMEN'S COLLECTION</h2>
+                            <img src="/assets/images/Women.JPG" class="d-block w-100" alt="..." style="height:350px;margin-bottom: 15px;">
+                            <p class="card-text" style="text-align: justify;">Refresh your daily rotation with our women’s clothing range.Our women's dresses line up mini, midi and maxi styles that were made for summer evenings, while our stylish jeans and pants offer something to flatter every silhouette.JeanStation is your one stop destination for all your fashion. </p>
+                        </div>
+                        <div class="card-footer"><a class="btn btn-secondary btn-sm" routerLink="/products/{{categoryOptions[3]}}">Shop Now</a></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <h1 class="font-weight-light" style="text-align: center;">LATEST PRODUCTS</h1>
+            </div>
+
+                <div class="row">
+                  <div class="col-lg-3 mb-4 mt-3" *ngFor="let p of products; let i = index">
+                    <div class="h-100">
+                      <div class="card" id="hov">
+                        <div class="card-body">
+                          <div id="carouselExampleControls{{i}}" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                              <div class="carousel-item" [ngClass]="{'active': j == 0 }"
+                                *ngFor="let images of p.ProductImages; let j = index">
+                                <img src="{{images.productImageUrl}}" class="d-block w-100" alt="ProductImage" style="height: 400px; width: 350px;">
+                              </div>
+                            </div>
+                           
+                          </div>
+                            <h5 class="card-title" style="font-size: 10pt; font-weight: bold;">{{p.productName}}</h5>
+                            <div class="row">
+                              <div class="col-md-2 col-sm-1">
+                                <a class="btn btn-default btn-lg" (click)="AddToWishlist(p.productId)"
+                                *ngIf="IsProductNotInWishlist(p.productId) && userservice.isLogin">
+                                  <i class="fa fa-heart"></i>
+                                </a>
+                                <a [class.linkDisabled]="true" class="btn btn-default btn-lg"
+                                  [class.toolbar-icon-disabled]="flgDisabled" (click)="AddToWishlist(p.productId)"
+                                  *ngIf="!IsProductNotInWishlist(p.productId) && userservice.isLogin">
+                                  <i class="fa fa-heart disabled-opacity"></i>
+                                </a>
+                                
+                            
+                              </div>
+                              <div class="col-md-2 col-sm-1">
+                                <a class="btn btn-default btn-lg" (click)="cartService.AddProductToCart(p)"
+                                *ngIf="IsProductNotInCart(p.productName) && userservice.isLogin">
+                                <i class="fa-solid fa-cart-plus"></i>
+                              </a>
+                              <a [class.linkDisabled]="true" class="btn btn-default btn-lg"
+                                [class.toolbar-icon-disabled]="flgDisabled" (click)="cartService.AddProductToCart(p)"
+                                *ngIf="!IsProductNotInCart(p.productName) && userservice.isLogin"><i class="fa-solid fa-cart-plus disabled-opacity"></i>
+                              </a>
+                              
+                              </div>
+                              <div class="col-md-2 col-sm-4">
+            
+                              </div>
+                              <div class="col-md-5 col-sm-5 pointer text-end mt-2" routerLink="productprofile/{{p.productId}}">
+                                <h3>
+                                  <p class="card-text">{{p.productPrice | currency:'CAD'}}</p>
+                                </h3>
+                              </div>
+                          </div>
+                          </div>
+                     </div>
+                  </div>
+                </div>
+              </div>
+
+            <div class="card text-white bg-secondary my-5 py-4 text-center">
+              <!-- <div class="card-body"><p class="text-white m-0">This call to action card is a great place to showcase some important information or display a clever tagline!</p></div> -->
+              <img src="/assets/images/Features.JPG" class="d-block w-100" alt="..." style="height:150px;">
+          </div>
+
+        </div>

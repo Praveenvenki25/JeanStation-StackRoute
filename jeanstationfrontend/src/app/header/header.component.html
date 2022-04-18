@@ -1,0 +1,157 @@
+<div class="header">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+          <a routerLink="/home" class="navbar-brand"><h1 class="h2 pt-3" id="fonts">JEAN<span style="color: rgb(124, 124, 124);">STATION</span></h1></a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+              <div class="navbar-nav">
+                  <a class="nav-item nav-link" routerLink="/home">Home</a>
+                  <a class="nav-item nav-link" routerLink="/products/All">Products</a>
+                  <a class="nav-item nav-link" routerLink="/products/Men">Men</a>
+                  <a class="nav-item nav-link" routerLink="/products/Women">Women</a>
+                  <a class="nav-item nav-link" routerLink="/products/Boys">Boys</a>
+                  <a class="nav-item nav-link" routerLink="/products/Girls">Girls</a>
+                  <a class="nav-item nav-link" *ngIf="userservice.isLogin" routerLink="/wishlist">WishList</a>
+                  <a class="nav-item nav-link" *ngIf="userservice.isLogin" routerLink="/orders">My Orders</a>
+                  <a class="nav-item nav-link" routerLink="/profile">About Us</a>
+              </div>
+              <div class="navbar-nav ms-auto">
+                  <button type="button" *ngIf="userservice.isLogin" (click)="GetAddresses()" class="btn btn-primary btn btn-light border border-secondary rounded float-end" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                      <i class="fa-solid fa-cart-shopping">
+                      <span class="badge badge-dark badge-pill text-dark" *ngIf="cartService.cartDetails.products?.length!=0">{{cartService.cartDetails.products?.length}}</span>
+                      </i>
+                </button>
+                  <a class="nav-link pointer" *ngIf="!userservice.isLogin" routerLink="/register">Register</a>
+                  <a class="nav-link pointer" *ngIf="!userservice.isLogin" routerLink="/login">Login</a>
+                  <div class="drop-down mx-2" *ngIf="userservice.isLogin">
+                    <button class="btn nav-link dropdown-toggle options-font-size" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{userservice.LoggedInUser?.firstName}} {{userservice.LoggedInUser?.lastName}}
+                    </button>
+                    <ul class="dropdown-menu p-2" aria-labelledby="dropdownMenuButton1">
+                      <li class="nav-item" *ngIf="userservice.LoggedInUser?.role=='Admin'">
+                        <a class="nav-link pointer options-font-size" routerLink="/product-admin">Manage Products</a>
+                      </li>
+                      <li class="nav-item" *ngIf="userservice.LoggedInUser?.role=='Admin'">
+                        <a class="nav-link pointer options-font-size" routerLink="/orders-admin">Manage Orders</a>
+                      </li>
+                      <li class="nav-item" *ngIf="userservice.LoggedInUser?.role=='Admin'">
+                        <a class="nav-link pointer options-font-size" routerLink="/discounts-admin">Manage Discounts</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link pointer options-font-size" routerLink="/address">Manage Addresses</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link pointer options-font-size" (click)="Logout()">Logout</a>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- <a class="nav-link pointer text-dark" routerLink="/product-admin">Manage Products</a>
+                  <a class="nav-link pointer text-dark" routerLink="/orders-admin">Manage Orders</a>
+                  <a class="nav-link pointer text-dark" routerLink="/discounts-admin">Manage Discounts</a>
+                  <a class="nav-link pointer text-dark" routerLink="/address">Manage Addresses</a>
+                  <a class="nav-link pointer text-dark" (click)="Logout()">Logout</a> -->
+              </div>
+          </div>
+      </div>
+  </nav>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title align-items-center" id="exampleModalLabel">Items in your cart</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modal-body" *ngIf="cartService.cartDetails.products?.length!=0">
+      <table class="table">
+        <tbody>
+          <tr *ngFor="let cartProduct of cartService.cartDetails.products, let i = index" class="mt-5">
+            <td class="col-sm-4 ml-2 align-middle">{{cartProduct.productName}}</td>
+            <div class="d-inline-flex ml-2">
+              <button class="btn btn-secondary text-white align-middle py-0 minus " value="-" (click)="UpdateQuantity(i, '-')">-</button>  
+              <input type="number" class="quantity mx-2" step="1" min="1" max="10" [value]="cartProduct.productQuantity">
+              <!--<td class="text-center col-sm-4">{{cartProduct.quantity}}</td>-->
+              <button class="btn btn-secondary text-white align-middle py-0 ml-2 plus" value="+" (click)="UpdateQuantity(i, '+')">+</button>
+            </div>
+          <td class="text-center col-sm-4 ml-2 align-middle">{{cartProduct.productAmount * cartProduct.productQuantity | currency:'CAD'}}</td>
+            <td><button class="btn-close delete-icon" (click)="cartService.RemoveProductFromCart(i)"></button></td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td><h3>Total Amount</h3></td>
+            <td>{{cartService.cartDetails.totalAmount | currency:'CAD'}}</td>
+          </tr>
+          <tr>
+            <td><h3>GST</h3></td>
+            <td>{{cartService.cartDetails.gst | currency:'CAD'}}</td>
+          </tr>
+          <tr>
+            <td><h3>Amount to be Paid</h3></td>
+            <td *ngIf="!discountService.isValidCoupon">{{cartService.cartDetails.amountToBePaid | currency: 'CAD'}}</td>
+            <td *ngIf="discountService.isValidCoupon"><del>{{cartService.cartDetails.amountToBePaid | currency: 'CAD'}}</del> <span class="text-success mx-2">{{cartService.cartDetails.discountedAmount| currency: 'CAD'}}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="modal-body ml-2 pt-0" *ngIf="cartService.cartDetails.products?.length!=0">
+      <div class="row" *ngIf="!discountService.isValidCoupon">
+        <div class="col-md-6">
+          <mat-form-field class="example-full-width">
+            <!-- <mat-label>Favorite food</mat-label> -->
+            <input matInput #couponCode placeholder="Enter coupon code">
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 align-middle">
+          <button class="btn btn-secondary" (click)="ApplyCouponCode(couponCode.value)">Apply</button> 
+          
+        </div>
+      </div>
+      <div class="row" *ngIf="isInValidCoupon">
+        <h3>Invalid Coupon!</h3>
+      </div>
+      <div class="row" *ngIf="discountService.isValidCoupon">
+        <h3>Coupon applied!</h3>
+      </div>
+    </div>
+
+    <div class="modal-body pt-0" *ngIf="cartService.cartDetails.products?.length!=0">
+      <h2>Delivery address</h2>
+      <div class="row" *ngIf="isInvalidAddress">
+        <div class="col-md-12 text-danger">
+          Please choose an address
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6" *ngFor="let address of addresses; let i=index;" (click)="updateAddressId(i)">
+          <label class="mt-3">
+            <input type="radio" name="demo" class="card-input-element d-none" value="demo2" (change)="updateAddressId(i)">
+            <div class="card">
+              <div class="card-body bg-light justify-content-between align-items-center">
+                <p class="card-text">{{address.apartmentNumber}} - {{address.streetName}}</p>
+                <p><small>{{address.province}}, {{address.postalcode}}</small></p>
+                <p class="card-text"></p>
+              </div>
+            </div>
+            </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-body" *ngIf="cartService.cartDetails.products?.length==0">
+      <img src="https://jeanstation.s3.ca-central-1.amazonaws.com/empty-cart.jpg" class="empty-cart">
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" #proceedPaymentCloseButton class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button class="btn btn-dark" *ngIf="cartService.cartDetails.products?.length!=0" (click)="CloseModalandRouteToPayment()">Proceed to Payment</button>
+    </div>
+    </div>
+</div>
+</div>

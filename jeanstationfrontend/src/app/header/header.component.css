@@ -1,0 +1,58 @@
+.h2{
+  color: rgb(39, 39, 39); 
+  font-weight: bolder;
+  margin-right: 20px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.header, .options-font-size {
+  font-size: large;
+}
+
+.empty-cart {
+  width: 450px;
+  height: 200px;
+}
+
+#fonts{
+  font-size: xx-large;
+}
+
+label {
+  width: 100%;
+  font-size: 1rem;
+}
+
+.card-input-element+.card {
+  color: black;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 2px solid transparent;
+  border-radius: 4px;
+}
+
+.card-input-element+.card:hover {
+  cursor: pointer;
+}
+
+.card-input-element:checked+.card {
+  border: 2px solid black;
+  -webkit-transition: border .3s;
+  -o-transition: border .3s;
+  transition: border .3s;
+}
+
+.mr-6 {
+  margin-right: 5rem;
+}
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute;
+    right: 1%;
+    left: 85%;
+  }
+} 

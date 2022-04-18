@@ -1,0 +1,228 @@
+<div class="container">
+    <div class="row border rounded bg-light my-4">
+      <div class="col-md-12 my-4 title text-center">
+        Manage Discounts
+      </div>
+    </div>
+    <div class="row my-4">
+      <div class="col-md-3">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label><i class="fa-solid fa-magnifying-glass"></i></mat-label>
+          <input matInput type="search" #search name="search" (change)="filterDiscounts(search.value)">
+        </mat-form-field>
+      </div>
+      <div class="col-md-7">
+
+      </div>
+      <div class="col-md-2 text-right mt-3">
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-secondary flex-end" data-bs-toggle="modal" data-bs-target="#addDiscountModal">
+            Add Discount
+          </button>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="addDiscountModal" tabindex="-1" aria-labelledby="addDiscountModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title mt-2" id="addDiscountModalLabel">Add Discount Details</h2>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form class="example-form" [formGroup]="discountForm">
+                <div class="row">
+                  <div class="col-lg-12">
+                        <!-- Coupon Code -->
+                        <mat-form-field class="example-full-width" appearance="fill">
+                          <mat-label>Coupon Code</mat-label>
+                          <input matInput formControlName="couponCode" required>
+                          <div class="text-danger" *ngIf="discountForm.value.couponCode == '' && onAddSubmit">
+                            Coupon Code is required
+                          </div>
+                        </mat-form-field>
+                        
+                        <!-- Expiry Date -->
+                        <mat-form-field class="example-full-width" appearance="fill">
+                          <mat-label>Expiry Date</mat-label>
+                          <input type="date" min="new Date()"  matInput formControlName="expiryDate" required>
+                          <div class="text-danger" *ngIf="discountForm.value.expiryDate == '' && onAddSubmit">
+                            Expiry Date is required
+                          </div>
+                        </mat-form-field>
+
+                        <!-- Is Active -->
+                        <mat-form-field class="example-full-width" appearance="fill">
+                          <mat-label>Is Active</mat-label>
+                          <select matNativeControl formControlName="isActive" required>
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                          </select>
+                          <!-- <input matInput formControlName="isActive" required> -->
+                          <div class="text-danger" *ngIf="discountForm.value.isActive == '' && onAddSubmit">
+                            Is Active is required
+                          </div>
+                          <!-- <div class="text-danger" *ngIf="(discountForm.value.isActive.toString().toLowerCase() != 'true' && 
+                                                            discountForm.value.isActive.toString().toLowerCase() != 'false' || editedDiscount.isActive == null) && onAddSubmit">
+                            Is Active should either be true or false
+                          </div> -->
+                        </mat-form-field>
+
+                        <!-- Discount Percentage -->
+                        <mat-form-field class="example-full-width" appearance="fill">
+                          <mat-label>Discount Percentage</mat-label>
+                          <input type="number" matInput formControlName="discountPercentage" required>
+                          <div class="text-danger" *ngIf="discountForm.value.discountPercentage == '' && onAddSubmit">
+                            Discount Percentage is required
+                          </div>
+                        </mat-form-field>
+                    </div>
+                </div>
+              </form>  
+            </div>
+            <div class="modal-footer">
+              <button #addDiscountCloseButton type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-dark" (click)="addDiscount()">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+                  
+                <!-- Discount ID Column -->
+                <ng-container matColumnDef="discountId">
+                  <th mat-header-cell *matHeaderCellDef> Discount ID </th>
+                  <td mat-cell *matCellDef="let element"> {{element.discountId}} </td>
+                </ng-container>
+              
+                <!-- CouponCode Column -->
+                <ng-container matColumnDef="couponCode">
+                  <th mat-header-cell *matHeaderCellDef> Coupon Code </th>
+                  <td mat-cell *matCellDef="let element"> {{element.couponCode}} </td>
+                </ng-container>
+              
+                <!-- expiryDate Column -->
+                <ng-container matColumnDef="expiryDate">
+                  <th mat-header-cell *matHeaderCellDef> Expiry Date </th>
+                  <td mat-cell *matCellDef="let element"> {{element.expiryDate | date: 'MM/dd/yyyy'}} </td>
+                </ng-container>
+              
+                <!-- isActive Column -->
+                <ng-container matColumnDef="isActive">
+                  <th mat-header-cell *matHeaderCellDef> Is Active </th>
+                  <td mat-cell *matCellDef="let element"> {{element.isActive}} </td>
+                </ng-container>
+
+                <!-- discountPercentage Column -->
+                <ng-container matColumnDef="discountPercentage">
+                  <th mat-header-cell *matHeaderCellDef> Discount Percentage</th>
+                  <td mat-cell *matCellDef="let element"> {{element.discountPercentage}} </td>
+                </ng-container>
+                
+                <!-- Edit Icon -->
+                  <ng-container matColumnDef="editDiscountIcon">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let element">
+                      <i class="fa-solid fa-pen pointer mx-3 text-secondary" data-bs-toggle="modal" data-bs-target="#editDiscountModal"  (click)="editDiscount(element.discountId)"></i>
+                    </td>
+                  </ng-container> 
+
+                <!-- Delete Icon -->
+                <ng-container matColumnDef="deleteDiscountIcon">
+                  <th mat-header-cell *matHeaderCellDef>  </th>
+                  <td mat-cell *matCellDef="let element">
+                    <i class="fa-solid fa-trash pointer mx-3 text-secondary" (click)="deleteDiscount(element.discountId)"></i>  
+                  </td>
+                </ng-container>               
+                
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>  
+              <mat-paginator [pageSizeOptions]="[10, 20, 30]"
+              showFirstLastButtons 
+              aria-label="Select page of discounts">
+              </mat-paginator>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Discount Modal -->
+<div class="modal fade" id="editDiscountModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title mt-2" id="exampleModalLabel">Edit Discount Details</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="form-group">
+          <div class="row">
+              
+          <div class="col-lg-12">
+            <!-- Discount ID-->
+            <mat-form-field class="example-full-width" appearance="fill">
+             <mat-label>Discount ID</mat-label>
+             <input matInput type="text" [(ngModel)]="editedDiscount.discountId" name="discountId" readonly>
+           </mat-form-field>
+ 
+           <!-- Coupon Code-->
+           <mat-form-field class="example-full-width" appearance="fill">
+             <mat-label>Coupon Code</mat-label>
+             <input matInput [(ngModel)]="editedDiscount.couponCode" name="couponCode" required>
+             <div class="text-danger" *ngIf="editedDiscount.couponCode == '' && onUpdateSubmit">
+              Coupon Code is required
+            </div>
+           </mat-form-field>
+           
+          <!-- Expiry Date --> 
+           <mat-form-field class="example-full-width" appearance="fill">
+             <mat-label>Expiry Date</mat-label>
+             <input type="date" matInput min="new Date()"  [ngModel]="editedDiscount.expiryDate | date: 'yyyy-MM-dd'" (ngModelChange)="editedDiscount.expiryDate=$event" name="expiryDate" required>
+             <!-- <input type="date" matInput [(ngModel)]="editedDiscount.expiryDate" name="expiryDate" required> -->
+             <div class="text-danger" *ngIf="editedDiscount.expiryDate == null && onUpdateSubmit">
+              Expiry Date is required
+            </div>
+           </mat-form-field>
+ 
+           <!-- Is Active Type --> 
+           <mat-form-field class="example-full-width" appearance="fill">
+             <mat-label>Is Active</mat-label>
+             <select matNativeControl [(ngModel)]="editedDiscount.isActive" name="isActive" required>
+              <option value="true">True</option>
+              <option value="false">False</option>
+            </select>
+             <!-- <input matInput [(ngModel)]="editedDiscount.isActive" name="isActive" required> -->
+             <div class="text-danger" *ngIf="editedDiscount.isActive == null && onUpdateSubmit">
+              Is Active is required
+            </div>
+            <!-- <div class="text-danger" *ngIf="(editedDiscount.isActive.toString().toLowerCase() != 'true' && 
+                                            editedDiscount.isActive.toString().toLowerCase() != 'false' || editedDiscount.isActive == null) && onUpdateSubmit">
+              Is Active should either be true or false
+            </div> -->
+             <!-- <mat-checkbox matInput name="isActive" formControlName="isActive">Is Active</mat-checkbox> -->
+           </mat-form-field>
+           </div>
+
+           <!-- Discount Percentage Type --> 
+           <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Discount Percentage</mat-label>
+            <input type="number" matInput [(ngModel)]="editedDiscount.discountPercentage" name="discountPercentage" required>
+            <div class="text-danger" *ngIf="editedDiscount.discountPercentage == null && onUpdateSubmit">
+              Discount Percentage is required
+            </div>
+          </mat-form-field>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button #editDiscountCloseButton type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark" (click)="updateDiscount()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>

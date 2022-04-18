@@ -1,0 +1,152 @@
+
+
+* {
+    padding: 1px;
+    margin: 1px;
+    box-sizing: border-box;
+    font-family: sans-serif
+}
+
+body {
+    background-color: #8e8e8e
+}
+
+.wrapper {
+    padding: 0px 50px 50px;
+    max-width: 1000px;
+    margin: 0px auto 40px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px
+}
+
+
+
+#bold {
+    font-size: 12pt;
+    font-weight: bolder;
+    padding-bottom: 5px;   
+}
+
+#hbold {
+    font-size: 14pt;
+    font-weight:780;
+    color: #5f9c6a;
+    
+}
+
+#dfont {
+    font-size: 11pt;
+    color: #8e8e8e;
+}
+
+img{
+    height: 60px;
+    width: 55px;
+    transition: transform .2s; /* Animation */
+    margin: 0 auto;
+}
+  
+img:hover {
+    transform: scale(1.50); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+
+.list:hover {
+    background-color: #dfdfdf;
+    cursor: pointer;
+    transition-duration: 100ms;
+    transition-delay: 10ms;
+    border-radius: 15px
+}
+
+.table-responsive {
+    height: 100px
+}
+
+.list div b {
+    font-size: 0.8rem
+}
+
+.list .order-item {
+    font-weight: 600;
+    color: #6db3ec
+}
+
+
+
+label {
+    margin-bottom: 0;
+    padding: 0;
+    font-weight: 900
+}
+
+button.btn {
+    font-size: 0.9rem;
+    background-color: #66cdaa
+}
+
+button.btn:hover {
+    background-color: #959595
+}
+
+.price {
+    color: #b0b0b0;
+    font-weight: 700
+}
+
+p.text-justify {
+    font-size: 0.9rem;
+    margin: 0
+}
+
+.row {
+    margin: 0px
+}
+
+.subscriptions {
+    border: 1px solid #ddd;
+    border-left: 5px solid #ffa500;
+    padding: 10px
+}
+
+.subscriptions div {
+    font-size: 0.9rem
+}
+
+@media(max-width: 425px) {
+    .wrapper {
+        padding: 20px
+    }
+
+    body {
+        font-size: 0.85rem
+    }
+
+    .subscriptions div {
+        padding-left: 5px
+    }
+
+    img+label {
+        font-size: 0.75rem
+    }
+}
+
+hr {
+    background-color: rgba(248, 248, 248, 0.667)
+}
+
+#design{
+    border: 1px solid rgb(116, 116, 116);
+    border-radius: 6px;
+    color: black;
+    background-color: #5f9c6a;
+    text-align: center;
+}
+.title{
+    font-size: 18pt;
+    font-weight: bolder;
+    margin-top: 22px;
+}
+
+.margin-bottom {
+    margin-bottom: 50px;
+}

@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="row border rounded bg-light my-4">
+        <div class="col-md-12 my-4 title text-center">
+          Manage Orders
+         </div>
+    </div>
+    <div class="card card-1" id="hovmain">
+        <div class="card-body">
+            <div class="row" style="margin-bottom: 20px;" id="hov"   *ngFor="let o of orders;">
+                <div class="col" id="bold">
+                    <div class="card card-2">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="media-body my-auto text-right">
+                                    <div class="row my-auto flex-column flex-md-row">
+                                        <div class="col my-auto">
+                                            <span class="mb-0">Customer Name:<span class="text-muted"> {{o.user?.firstName}} {{o.user?.lastName}}</span></span>
+                                            
+                                        </div>
+                                        <div class="col my-auto">
+                                            
+                                            <span class="mb-0">Order Id: <span class="text-muted">{{o.orderId}}</span></span>
+                                        </div>
+                                       
+                                        <div class="col my-auto">
+                                            <span class="mx-2">Order Status:</span>
+                                            <mat-form-field appearance="fill">
+                                              <mat-select [(value)]="o.orderStatus">
+                                                <mat-option *ngFor="let os of orderStatuses" [value]="os.status">
+                                                  {{os.status}}
+                                                </mat-option>
+                                              </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="my-3 ">
+                            
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-2">
+                            <div class="card-body">
+                                    <div class="media-body my-auto text-right">
+                                        <div class="row my-auto flex-column flex-md-row">
+                                            
+                                            <div class="col my-auto" > Product Name </div>
+                                            <div class="col my-auto" > Quantity</div>
+                                            <div class="col my-auto" > Amount </div>
+                                        </div>
+                                     </div>
+                            </div>
+            
+                            <div class="row" style="margin-bottom: 20px;" style="border: none;" *ngFor="let p of o.products;">
+                                <div class="col">
+                                    <div class="card card-2" style="border: none;">
+                                        <div class="card-body" >
+                                            <div >
+                                                <div class="media-body my-auto text-right">
+                                                    <div class="row my-auto flex-column flex-md-row text-muted">
+                                                        
+                                                        <div class="col my-auto"> <small>{{p.productId}} </small></div>
+                                                        <div class="col my-auto"> <small>{{p.productQuantity}}</small></div>
+                                                        <div class="col my-auto"> <small>{{p.productAmount}}</small></div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>                                         
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col">
+                        <button type="button" class="btn btn-secondary" (click)="UpdateOrderStatus(o)">Update</button>    
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+
